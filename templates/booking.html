@@ -1,0 +1,163 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<title>Book Event</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='personal.css') }}">
+<style>
+    /* Small custom styles for the new inputs to match your theme */
+    .form-check-input { margin-top: 0.3rem; }
+    .form-check-label { margin-left: 0.5rem; }
+    .slider-value { font-weight: bold; color: #007bff; margin-left: 10px; }
+    .extras-box { background-color: #f8f9fa; padding: 15px; border-radius: 5px; border: 1px solid #dee2e6; }
+</style>
+{% endblock head %}
+
+{% block body %}
+<div>
+  <br><br>
+  <div class="jumbotron jumbotron-fluid">
+    <div class="container">
+      <h1 class="display-3"><center>{{ event }} Event Booking Page</center></h1>
+    </div>
+  </div>
+</div>
+
+<div id="booking_form" class='details' style="margin-top: -33px;">
+  <h1>Event Details:</h1>
+
+  <form action="" method="POST">
+
+    {% if event == 'Birthday' %}
+    <div class="form-group row">
+      <label for="person1" class="col-3 col-form-label">Birthday of</label>
+      <div class="col-9">
+        <input id="person1" name="person1" type="text" class="form-control" required="required">
+      </div>
+    </div>
+    {% elif event == 'Anniversary' %}
+    <div class="form-group row">
+      <label for="person1" class="col-3 col-form-label">Name of Person 1</label>
+      <div class="col-9">
+        <input id="person1" name="person1" type="text" class="form-control" required="required">
+      </div>
+    </div>
+    <div class="form-group row">
+      <label for="person2" class="col-3 col-form-label">Name of Person 2</label>
+      <div class="col-9">
+        <input id="person2" name="person2" type="text" class="form-control" required="required">
+      </div>
+    </div>
+    {% elif event == 'Other' %}
+    <div class="form-group row">
+      <label for="etype" class="col-3 col-form-label">Event Name</label>
+      <div class="col-9">
+        <input id="etype" name="etype" type="text" class="form-control" required="required">
+      </div>
+    </div>
+    {% endif %}
+
+    <div class="form-group row">
+      <label for="venue" class="col-3 col-form-label">Venue</label>
+      <div class="col-9">
+        <textarea id="venue" name="venue" cols="40" rows="3" class="form-control" required="required"></textarea>
+      </div>
+    </div>
+
+    <div class="form-group row">
+      <label for="tier" class="col-3 col-form-label">Event Tier</label>
+      <div class="col-9">
+        <select id="tier" name="tier" required="required" class="custom-select form-control">
+          <option value="tier1">Tier 1 (Base: {{ t1_base }} | Per person: {{ t1_per }})</option>
+          <option value="tier2">Tier 2 (Base: {{ t2_base }} | Per person: {{ t2_per }})</option>
+          <option value="tier3">Tier 3 (Base: {{ t3_base }} | Per person: {{ t3_per }})</option>
+          <option value="tier4">Tier 4 (Base: {{ t4_base }} | Per person: {{ t4_per }})</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="form-group row">
+      <label for="max" class="col-3 col-form-label">Guest Count</label>
+      <div class="col-9">
+        <input type="range" class="custom-range" min="10" max="1000" step="10" id="max" name="max"
+               oninput="document.getElementById('guestOutput').innerText = this.value" value="100" style="width: 85%;">
+        <span id="guestOutput" class="slider-value">100</span> guests
+      </div>
+    </div>
+
+    <div class="form-group row">
+      <label class="col-3 col-form-label">Add Extras</label>
+      <div class="col-9">
+        <div class="extras-box">
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" id="dj" name="extras" value="DJ">
+                <label class="form-check-label" for="dj">Professional DJ (+PKR 5,000)</label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" id="sound" name="extras" value="SoundSystem">
+                <label class="form-check-label" for="sound">Premium Sound System (+PKR 3,000)</label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" id="parking" name="extras" value="ValetParking">
+                <label class="form-check-label" for="parking">Valet Parking (+PKR 2,000)</label>
+            </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group row">
+        <label class="col-3 col-form-label">Meal Preference</label>
+        <div class="col-9">
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="meal_pref" id="meal1" value="Standard" checked>
+                <label class="form-check-label" for="meal1">Standard / Mix</label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="meal_pref" id="meal2" value="Veg">
+                <label class="form-check-label" for="meal2">Vegetarian Only</label>
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group row">
+        <label for="visibility" class="col-3 col-form-label">Event Visibility</label>
+        <div class="col-9">
+            <select name="visibility" id="visibility" class="form-control">
+                <option value="private">Private (Only I can see it)</option>
+                <option value="public">Public (Show on Homepage)</option>
+            </select>
+            <small class="form-text text-muted">Public events will be featured on our main website.</small>
+        </div>
+    </div>
+
+    <div class="form-group row">
+      <label for="edate" class="col-3 col-form-label">Event Date</label>
+      <div class="col-9">
+        <input id="edate" name="edate" type="date" class="form-control" onkeydown="return false" required>
+      </div>
+    </div>
+
+    <div class="form-group row">
+      <label for="requests" class="col-3 col-form-label">Special Requests</label>
+      <div class="col-9">
+        <textarea id="requests" name="requests" cols="40" rows="3" aria-describedby="requestsHelpBlock" class="form-control"></textarea>
+        <span id="requestsHelpBlock" class="form-text text-muted">Optional</span>
+      </div>
+    </div>
+
+    {% if error_message %}
+    <div class="form-group row">
+      <div class="offset-3 col-9">
+        <div class="alert alert-danger">{{ error_message }}</div>
+      </div>
+    </div>
+    {% endif %}
+
+    <div class="form-group row">
+      <div class="offset-3 col-9">
+        <button name="submit" type="submit" class="btn btn-primary">Book Event</button>
+      </div>
+    </div>
+
+  </form>
+</div>
+{% endblock body %}

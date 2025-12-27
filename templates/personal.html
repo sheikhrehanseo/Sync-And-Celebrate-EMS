@@ -1,0 +1,99 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<title>Personal Details</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='personal.css') }}">
+{% endblock head %}
+
+{% block body %}
+<div>
+  <br><br>
+  <div class="jumbotron jumbotron-fluid">
+    <div class="container">
+      <h1 class="display-3"><center>Personal Details</center></h1>
+      <p class="lead"><center>Update your profile and contact information</center></p>
+    </div>
+  </div>
+</div>
+
+<div class="container" style="background-color: #f9f9f9; padding: 30px; border-radius: 10px; margin-bottom: 50px;">
+  <form action="" method="POST" enctype="multipart/form-data">
+    
+    <div class="form-group row">
+      <label class="col-sm-3 col-form-label">Profile Picture</label>
+      <div class="col-sm-9">
+        <input type="file" name="profile_pic" class="form-control-file">
+        <small class="form-text text-muted">Allowed formats: PNG, JPG, JPEG</small>
+      </div>
+    </div>
+    <hr>
+
+    <div class="form-group row">
+      <label for="fname" class="col-sm-3 col-form-label">First Name</label>
+      <div class="col-sm-9">
+        <input id="fname" name="fname" type="text" class="form-control" value="{{ details.fname if details else '' }}" required>
+      </div>
+    </div>
+    <div class="form-group row">
+      <label for="mname" class="col-sm-3 col-form-label">Middle Name</label>
+      <div class="col-sm-9">
+        <input id="mname" name="mname" type="text" class="form-control" value="{{ details.mname if details else '' }}">
+      </div>
+    </div>
+    <div class="form-group row">
+      <label for="lname" class="col-sm-3 col-form-label">Last Name</label>
+      <div class="col-sm-9">
+        <input id="lname" name="lname" type="text" class="form-control" value="{{ details.lname if details else '' }}" required>
+      </div>
+    </div>
+
+    <div class="form-group row">
+      <label for="dob" class="col-sm-3 col-form-label">Date of Birth</label>
+      <div class="col-sm-9">
+        <input id="dob" name="dob" type="date" class="form-control" value="{{ details.dob if details else '' }}" required>
+      </div>
+    </div>
+    <div class="form-group row">
+      <label for="gender" class="col-sm-3 col-form-label">Gender</label>
+      <div class="col-sm-9">
+        <select id="gender" name="gender" class="form-control">
+          <option value="Male" {% if details and details.gender == 'Male' %}selected{% endif %}>Male</option>
+          <option value="Female" {% if details and details.gender == 'Female' %}selected{% endif %}>Female</option>
+          <option value="Other" {% if details and details.gender == 'Other' %}selected{% endif %}>Other</option>
+        </select>
+      </div>
+    </div>
+    <div class="form-group row">
+      <label for="address" class="col-sm-3 col-form-label">Address</label>
+      <div class="col-sm-9">
+        <textarea id="address" name="address" cols="40" rows="3" class="form-control" required>{{ details.address if details else '' }}</textarea>
+      </div>
+    </div>
+
+    <div class="form-group row">
+      <label for="contact1" class="col-sm-3 col-form-label">Primary Contact</label>
+      <div class="col-sm-9">
+        <input id="contact1" name="contact1" type="text" class="form-control" value="{{ details.contact1 if details else '' }}" required>
+      </div>
+    </div>
+    <div class="form-group row">
+      <label for="contact2" class="col-sm-3 col-form-label">Secondary Contact</label>
+      <div class="col-sm-9">
+        <input id="contact2" name="contact2" type="text" class="form-control" value="{{ details.contact2 if details else '' }}">
+      </div>
+    </div>
+    <div class="form-group row">
+      <label for="contact3" class="col-sm-3 col-form-label">Email (Backup)</label>
+      <div class="col-sm-9">
+        <input id="contact3" name="contact3" type="email" class="form-control" value="{{ details.contact3 if details else '' }}">
+      </div>
+    </div>
+
+    <div class="form-group row">
+      <div class="col-sm-9 offset-sm-3">
+        <button name="submit" type="submit" class="btn btn-primary btn-lg">Update Details</button>
+      </div>
+    </div>
+  </form>
+</div>
+{% endblock body %}
