@@ -3,17 +3,15 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="">
     <link rel="icon" href="/docs/4.0/assets/img/favicons/favicon.ico">
     <title>Sync & Celebrate | Admin Login</title>
     <link rel="canonical" href="https://getbootstrap.com/docs/4.0/examples/sign-in/">
     <link href="https://getbootstrap.com/docs/4.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="/static/signin.css" rel="stylesheet">
+    <link href="{{ url_for('static', filename='signin.css') }}" rel="stylesheet">
 </head>
 <body class="text-center">
-    <form class="form-signin" method="POST" action="/admin/login">
-        <img class="mb-4" src='/static/baseline_spa_black_48dp.png' alt="logo" width="72" height="72">
+    <form class="form-signin" method="POST" action="{{ url_for('admin.admin_login') }}">
+        <img class="mb-4" src="{{ url_for('static', filename='images/baseline_spa_black_48dp.png') }}" alt="logo" width="72" height="72">
         <h1 class="h3 mb-3 font-weight-normal">Admin Login | Sync & Celebrate</h1>
         <label for="username" class="sr-only">Username</label>
         <input type="text" name="username" class="form-control" placeholder="Username" required autofocus>
