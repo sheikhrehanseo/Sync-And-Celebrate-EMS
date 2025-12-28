@@ -11,7 +11,7 @@
 </head>
 <body>
     <nav class="navbar fixed-top navbar-dark bg-dark">
-        <a class="navbar-brand" href='/'>
+        <a class="navbar-brand" href="{{ url_for('main.index') }}">
             <span class="material-icons">
                 spa
             </span>
@@ -23,38 +23,38 @@
         <div class="collapse navbar-collapse" id="navbarsExample01">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item active">
-                    <a class="nav-link" href="/">Home<span class="sr-only">(current)</span></a>
+                    <a class="nav-link" href="{{ url_for('main.index') }}">Home<span class="sr-only">(current)</span></a>
                 </li>
                 {% if session %}
                     {% if session.role == 'admin' %}
                         <li class="nav-item">
-                            <a class="nav-link" href="/admin/dashboard">Admin Dashboard</a>
+                            <a class="nav-link" href="{{ url_for('admin.admin_dashboard') }}">Admin Dashboard</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="/admin/logout">Logout</a>
+                            <a class="nav-link" href="{{ url_for('admin.admin_logout') }}">Logout</a>
                         </li>
                     {% else %}
                         <li class="nav-item">
-                            <a class="nav-link" href="/users/{{ name }}">{{ name }}</a>
+                            <a class="nav-link" href="{{ url_for('user.dashboard', username=session['username']) }}">{{ session['username'] }}</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="/logout">Logout</a>
+                            <a class="nav-link" href="{{ url_for('auth.logout') }}">Logout</a>
                         </li>
                     {% endif %}
                 {% else %}
                     <li class="nav-item">
-                        <a class="nav-link" href="/login">Login</a>
+                        <a class="nav-link" href="{{ url_for('auth.login') }}">Login</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/register">Register</a>
+                        <a class="nav-link" href="{{ url_for('auth.register') }}">Register</a>
                     </li>
                 {% endif %}
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Book an Event</a>
                     <div class="dropdown-menu" aria-labelledby="dropdown01">
-                        <a class="dropdown-item" href="/birthday">Birthdays</a>
-                        <a class="dropdown-item" href="/anniversary">Anniversaries</a>
-                        <a class="dropdown-item" href="/other">Other Celebrations</a>
+                        <a class="dropdown-item" href="{{ url_for('user.book_event', eventname='birthday') }}">Birthdays</a>
+                        <a class="dropdown-item" href="{{ url_for('user.book_event', eventname='anniversary') }}">Anniversaries</a>
+                        <a class="dropdown-item" href="{{ url_for('user.book_event', eventname='other') }}">Other Celebrations</a>
                     </div>
                 </li>
             </ul>
