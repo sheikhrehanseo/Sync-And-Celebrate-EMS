@@ -25,12 +25,12 @@
                 {% if pdata and pdata.age %}
                 <p>Age: {{ pdata.age }} | Contact: {{ pdata.contact1 }}</p>
                 {% else %}
-                <p class="text-danger">Profile Incomplete. <a href="/personal">Update Now</a></p>
+                <p class="text-danger">Profile Incomplete. <a href="{{ url_for('user.personal') }}">Update Now</a></p>
                 {% endif %}
             </div>
             <div class="col-md-3 text-right">
-                <a class="btn btn-danger" href='/logout'>Logout</a>
-                <a class="btn btn-primary" href='/personal'>Edit Profile</a>
+                <a class="btn btn-danger" href="{{ url_for('auth.logout') }}">Logout</a>
+                <a class="btn btn-primary" href="{{ url_for('user.personal') }}">Edit Profile</a>
             </div>
         </div>
 
@@ -75,7 +75,7 @@
                             {% endif %}
                         </td>
                         <td>
-                            <a href="/ticket/{{ event.eid }}" target="_blank" class="btn btn-sm btn-outline-dark">
+                            <a href="{{ url_for('user.ticket', event_id=event.eid) }}" target="_blank" class="btn btn-sm btn-outline-dark">
                                 📄 Ticket
                             </a>
                         </td>
@@ -84,7 +84,7 @@
 
                     {% if not events %}
                     <tr>
-                        <td colspan="8" class="text-center">No events booked yet. <a href="/home">Book one now!</a></td>
+                        <td colspan="8" class="text-center">No events booked yet. <a href="{{ url_for('main.index') }}">Book one now!</a></td>
                     </tr>
                     {% endif %}
                 </tbody>
