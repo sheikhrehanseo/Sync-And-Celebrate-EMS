@@ -4,7 +4,6 @@
 <title>Book Event</title>
 <link rel="stylesheet" href="{{ url_for('static', filename='personal.css') }}">
 <style>
-    /* Small custom styles for the new inputs to match your theme */
     .form-check-input { margin-top: 0.3rem; }
     .form-check-label { margin-left: 0.5rem; }
     .slider-value { font-weight: bold; color: #007bff; margin-left: 10px; }
@@ -24,7 +23,6 @@
 
 <div id="booking_form" class='details' style="margin-top: -33px;">
   <h1>Event Details:</h1>
-
   <form action="" method="POST">
 
     {% if event == 'Birthday' %}
