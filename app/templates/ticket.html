@@ -72,7 +72,7 @@
 <div class="btn-group no-print">
     <button class="btn" onclick="window.print()">🖨️ Print Ticket</button>
     <button class="btn" onclick="downloadPNG()">⬇️ Download PNG</button>
-    <a href="/home" class="btn" style="background-color: #777;">Back to Home</a>
+    <a href="{{ url_for('main.index') }}" class="btn" style="background-color: #777;">Back to Home</a>
 </div>
 
 <script>
