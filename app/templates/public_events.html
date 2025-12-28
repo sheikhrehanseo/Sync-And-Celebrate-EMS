@@ -62,7 +62,7 @@
         {% else %}
             <div class="col-12 text-center">
                 <h3>No public events found.</h3>
-                <a href="/home" class="btn btn-primary mt-3">Back Home</a>
+                <a href="{{ url_for('main.index') }}" class="btn btn-primary mt-3">Back Home</a>
             </div>
         {% endif %}
     </div>
