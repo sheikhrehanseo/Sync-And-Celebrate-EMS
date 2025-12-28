@@ -19,7 +19,7 @@
     <h2>Edit Event #{{ event.eid }}</h2>
     <p><strong>Type:</strong> {{ event.etype }}</p>
 
-    <form action="{{ url_for('update_event') }}" method="POST">
+    <form action="{{ url_for('admin.update_event') }}" method="POST">
         <input type="hidden" name="event_id" value="{{ event.eid }}">
 
         <label for="edate">Date:</label>
@@ -41,7 +41,7 @@
         <button type="submit">Update Event</button>
     </form>
 
-    <a href="{{ url_for('admin_dashboard') }}" class="back-link">&larr; Back to Dashboard</a>
+    <a href="{{ url_for('admin.admin_dashboard') }}" class="back-link">&larr; Back to Dashboard</a>
 </div>
 
 </body>
