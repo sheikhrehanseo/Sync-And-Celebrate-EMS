@@ -39,15 +39,6 @@ The application follows a **3-Tier Architecture**:
 2.  **Application Layer:** Python Flask (Business Logic, Routing, API).
 3.  **Data Layer:** MySQL Database (Relational Data Storage).
 
-## 📸 Screenshots
-| **User Dashboard** | **Admin Dashboard** |
-|:---:|:---:|
-| ![User Dash](https://via.placeholder.com/400x200?text=User+Dashboard) | ![Admin Dash](https://via.placeholder.com/400x200?text=Admin+Dashboard) |
-
-| **Booking Interface** | **REST API (Postman)** |
-|:---:|:---:|
-| ![Booking](https://via.placeholder.com/400x200?text=Booking+Page) | ![API](https://via.placeholder.com/400x200?text=Postman+Test) |
-
 ## 🛠 Tech Stack
 * **Backend:** Python, Flask, Werkzeug
 * **Database:** MySQL (Hosted on PythonAnywhere)
